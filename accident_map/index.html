@@ -6,11 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 </head>
 <body>
     <input type="file" id="input-csv" onchange="uploadFile(this.files)" accept=".csv">
-    <div id="map" style="width:500px;height:600px;"></div>
+    <!-- <div id="map" style="width:500px;height:600px;"></div> -->
+    <div class="chart-container" style="position: relative; height:400px; width:800px; margin:auto">
+        <canvas id="chart"></canvas>
+    </div>
+    <div class="chart-container" style="position: relative; height:400px; width:800px; margin:auto">
+        <canvas id="chart2"></canvas>
+    </div>
+    <div class="chart-container" style="position: relative; height:400px; width:400px; margin:auto">
+        <canvas id="chart3"></canvas>
+    </div>
 </body>
 <!--  -->
-<script src="./scripts/main.js"></script>
+<!-- <script src="./scripts/main.js"></script> -->
+<script src="./scripts/main2.js"></script>
 </html>
