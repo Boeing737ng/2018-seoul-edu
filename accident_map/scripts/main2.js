@@ -16,7 +16,7 @@ $(document).ready(
 );
 
 function pFileReader(file){
-    return new Promise((resolve, reject) => {
+    return new Promise(function(resolve, reject){
         var fr = new FileReader();  
         fr.readAsText(file);
         fr.onload = function (e) {
