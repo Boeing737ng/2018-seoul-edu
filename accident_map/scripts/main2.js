@@ -74,6 +74,15 @@ function getDeathNumList(){
     return deathNum;
 }
 
+// 중상자수의 리스트를 가져온다.
+function getSlanderNumList(){
+    var slanderNum = [];
+    for(var key in curCSVData){
+        slanderNum.push(parseInt(curCSVData[key][SLANDER_NUM]));
+    }
+    return slanderNum;
+}
+
 // 경상자수의 리스트를 가져온다.
 function getLightInjuryNumList(){
     var lightInjuryNumList = [];
@@ -113,11 +122,19 @@ function createBarChart(){
 }
 
 function updateBarChart(){
+    // barData.data = {
+    //     labels: getRandomLabelList(5),
+    //     datasets: [{
+    //         label: 'DataSet',
+    //         data: getRandomList(5),
+    //         backgroundColor: getRandomColorList(1)
+    //     }]
+    // };
     barData.data = {
-        labels: getRandomLabelList(5),
+        labels: getLocationNameList(),
         datasets: [{
-            label: 'DataSet',
-            data: getRandomList(5),
+            label: '사상자수',
+            data: getCasualtyNumList(),
             backgroundColor: getRandomColorList(1)
         }]
     };
@@ -155,24 +172,44 @@ function createBarStackChart() {
 };
 
 function updateBarStackChart(){
+    // barStackData.data = {
+    //     labels: getRandomLabelList(5),
+    //     datasets: [{
+    //         label: 'Dataset 1',
+    //         backgroundColor: getRandomColorList(1),
+    //         data: getRandomList(5)
+    //     }, {
+    //         label: 'Dataset 2',
+    //         backgroundColor: getRandomColorList(1),
+    //         data: getRandomList(5)
+    //     }, {
+    //         label: 'Dataset 3',
+    //         backgroundColor: getRandomColorList(1),
+    //         data: getRandomList(5)
+    //     }, {
+    //         label: 'Dataset 4',
+    //         backgroundColor: getRandomColorList(1),
+    //         data: getRandomList(5)
+    //     }]
+    // };
     barStackData.data = {
-        labels: getRandomLabelList(5),
+        labels: getLocationNameList(),
         datasets: [{
-            label: 'Dataset 1',
+            label: '사망자수',
             backgroundColor: getRandomColorList(1),
-            data: getRandomList(5)
+            data: getDeathNumList()
         }, {
-            label: 'Dataset 2',
+            label: '중상자수',
             backgroundColor: getRandomColorList(1),
-            data: getRandomList(5)
+            data: getSlanderNumList()
         }, {
-            label: 'Dataset 3',
+            label: '경상자수',
             backgroundColor: getRandomColorList(1),
-            data: getRandomList(5)
+            data: getLightInjuryNumList()
         }, {
-            label: 'Dataset 4',
+            label: '부상신고자수',
             backgroundColor: getRandomColorList(1),
-            data: getRandomList(5)
+            data: getReportedInjuryNumList()
         }]
     };
     window.myBarStackChart.update();
@@ -204,12 +241,20 @@ function createDoughnutChart() {
 };
 
 function updateDoughnutChart(){
+    // doughnutData.data = {
+    //     labels: getRandomLabelList(5),
+    //     datasets: [{
+    //         label: 'DataSet 1',
+    //         data: getRandomList(5),
+    //         backgroundColor: getRandomColorList(5)
+    //     }]
+    // };
     doughnutData.data = {
-        labels: getRandomLabelList(5),
+        labels: getLocationNameList(),
         datasets: [{
-            label: 'DataSet 1',
-            data: getRandomList(5),
-            backgroundColor: getRandomColorList(5)
+            label: '발생건수',
+            data: getOccurrenceNumList(),
+            backgroundColor: getRandomColorList(54)
         }]
     };
     window.myDoughnutChart.update();
