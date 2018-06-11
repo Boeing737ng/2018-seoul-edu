@@ -7,20 +7,34 @@ var SLANDER_NUM = 4;
 var LIGHT_INJURY_NUM = 5;
 var REPORTED_INJURY_NUM = 6;
 
-function uploadFile(file) {
-	var reader = new FileReader();
-	var coordinate;
-	reader.readAsText(file[0]);
-	reader.onload = function (e) {
-		var rows = e.target.result.split("\n");
-		console.log(rows);
-	}
+$(document).ready(
+    function() {
+        createBarChart();
+        createBarStackChart();
+        createDoughnutChart();
+    }
+);
+
+function pFileReader(file){
+    return new Promise((resolve, reject) => {
+        var fr = new FileReader();  
+        fr.readAsText(file);
+        fr.onload = function (e) {
+            var rows = fr.result.split("\n").slice(1)
+            for(var key in rows){
+                rows[key] = rows[key].split(",");
+            }
+            resolve(rows);
+        }
+    });
 }
+
 function setCurrentCSVData(){
     csvData = $("#input-csv")[0].files[0];
 
     pFileReader(csvData).then(function(success){
         curCSVData = success;
+        alert("파일 읽기 완료");
     });
 }
 
@@ -78,126 +92,128 @@ function getReportedInjuryNumList(){
     return reportedInjuryNumList;
 }
 
-function pFileReader(file){
-    return new Promise((resolve, reject) => {
-        var fr = new FileReader();  
-        fr.readAsText(file);
-        fr.onload = function (e) {
-            var rows = fr.result.split("\n").slice(1)
-            for(var key in rows){
-                rows[key] = rows[key].split(",");
-            }
-            resolve(rows);
+var barData = {
+    type: 'bar',
+    data: {},
+    options: {
+        responsive: true,
+        legend: {
+            position: 'top',
+        },
+        title: {
+            display: true,
+            text: 'Chart.js Bar Chart'
         }
-    });
+    }
 }
 
-function createChart(){
-    var ctx = document.getElementById("chart");
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: getRandomLabelList(5),
-            datasets: [{
-                label: 'OCCURRENCE_NUM',
-                data: getRandomList(5),
-                backgroundColor: "rgb(255, 0, 0)"
-            }]
-        },
-        options: {
-            responsive: true,
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Chart.js Bar Chart'
-            }
-        }
-    });
+function createBarChart(){
+    var ctx = $("#bar-chart")[0].getContext('2d')
+    window.myBarChart = new Chart(ctx, barData);
 }
 
-function createChart2() {
-    var ctx = document.getElementById('chart2').getContext('2d');
-    window.myBar = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: getRandomLabelList(5),
-            datasets: [{
-                label: 'Dataset 1',
-                backgroundColor: "rgb(255, 0, 0)",
-                data: getRandomList(5)
-            }, {
-                label: 'Dataset 2',
-                backgroundColor: "rgb(0, 255, 0)",
-                data: getRandomList(5)
-            }, {
-                label: 'Dataset 3',
-                backgroundColor: "rgb(0, 0, 255)",
-                data: getRandomList(5)
-            }, {
-                label: 'Dataset 4',
-                backgroundColor: "rgb(0, 0, 0)",
-                data: getRandomList(5)
-            }]
-        
+function updateBarChart(){
+    barData.data = {
+        labels: getRandomLabelList(5),
+        datasets: [{
+            label: 'DataSet',
+            data: getRandomList(5),
+            backgroundColor: getRandomColorList(1)
+        }]
+    };
+    window.myBarChart.update();
+}
+
+var barStackData = {
+    type: 'bar',
+    data: {},
+    options: {
+        title: {
+            display: true,
+            text: 'Chart.js Bar Chart - Stacked'
         },
-        options: {
-            title: {
-                display: true,
-                text: 'Chart.js Bar Chart - Stacked'
-            },
-            tooltips: {
-                mode: 'index',
-                intersect: false
-            },
-            responsive: true,
-            scales: {
-                xAxes: [{
-                    stacked: true,
-                }],
-                yAxes: [{
-                    stacked: true
-                }]
-            }
+        tooltips: {
+            mode: 'index',
+            intersect: false
+        },
+        responsive: true,
+        scales: {
+            xAxes: [{
+                stacked: true,
+            }],
+            yAxes: [{
+                stacked: true
+            }]
         }
-    });
+    }
+}
+
+function createBarStackChart() {
+    var ctx = $("#bar-stack-chart")[0].getContext('2d');
+    
+    window.myBarStackChart = new Chart(ctx, barStackData);
 };
 
-function createChart3() {
-    var ctx = document.getElementById('chart3').getContext('2d');
-    window.myBar = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: getRandomLabelList(5),
-            datasets: [{
-                label: 'DataSet 1',
-                data: getRandomList(5),
-                backgroundColor: [
-                    "rgb(0, 255, 255)",
-                    "rgb(255, 0, 0)",
-                    "rgb(0, 255, 0)",
-                    "rgb(0, 0, 255)",
-                    "rgb(255, 255, 0)"
-                ]
-            }]
+function updateBarStackChart(){
+    barStackData.data = {
+        labels: getRandomLabelList(5),
+        datasets: [{
+            label: 'Dataset 1',
+            backgroundColor: getRandomColorList(1),
+            data: getRandomList(5)
+        }, {
+            label: 'Dataset 2',
+            backgroundColor: getRandomColorList(1),
+            data: getRandomList(5)
+        }, {
+            label: 'Dataset 3',
+            backgroundColor: getRandomColorList(1),
+            data: getRandomList(5)
+        }, {
+            label: 'Dataset 4',
+            backgroundColor: getRandomColorList(1),
+            data: getRandomList(5)
+        }]
+    };
+    window.myBarStackChart.update();
+}
+
+var doughnutData = {
+    type: 'doughnut',
+    data: {},
+    options: {
+        responsive: true,
+        legend: {
+            position: 'top',
         },
-        options: {
-            responsive: true,
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Chart.js Doughnut Chart'
-            },
-            animation: {
-                animateScale: true,
-                animateRotate: true
-            }
+        title: {
+            display: true,
+            text: 'Chart.js Doughnut Chart'
+        },
+        animation: {
+            animateScale: true,
+            animateRotate: true
         }
-    });
+    }
+}
+
+function createDoughnutChart() {
+    $("#doughnut-chart")[0]
+    var ctx = $("#doughnut-chart")[0].getContext('2d');
+    window.myDoughnutChart = new Chart(ctx, doughnutData);
 };
+
+function updateDoughnutChart(){
+    doughnutData.data = {
+        labels: getRandomLabelList(5),
+        datasets: [{
+            label: 'DataSet 1',
+            data: getRandomList(5),
+            backgroundColor: getRandomColorList(5)
+        }]
+    };
+    window.myDoughnutChart.update();
+}
 
 function getRandomList(n){
     var randomList = [];
@@ -213,4 +229,18 @@ function getRandomLabelList(n){
         randomLabelList.push("Label "+Math.round(Math.random()*100));
     }
     return randomLabelList;
+}
+
+function getRandomColorList(n){
+    var randomColorList = [];
+    for(var i = 0; i<n; i++){
+        R = Math.round(Math.random()*255);
+        G = Math.round(Math.random()*255);
+        B = Math.round(Math.random()*255);
+        randomColorList.push("rgb("+R+","+G+","+B+")");
+    }
+    if(randomColorList.length == 1){
+        return randomColorList[0];
+    }
+    return randomColorList;
 }

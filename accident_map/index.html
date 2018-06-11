@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <!-- <meta charset="UTF-8"> -->
-    <meta charset="EUC-KR">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
@@ -10,16 +10,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 </head>
 <body>
-    <input type="file" id="input-csv" onchange="uploadFile(this.files)" accept=".csv">
-    <!-- <div id="map" style="width:500px;height:600px;"></div> -->
+    <input type="file" id="input-csv" accept=".csv">
+    <button onclick="setCurrentCSVData()">파일 읽기</button>
+    <br>
+    <button onclick="updateBarChart()">Bar Chart 그리기</button>
     <div class="chart-container" style="position: relative; height:400px; width:800px; margin:auto">
-        <canvas id="chart"></canvas>
+        <canvas id="bar-chart"></canvas>
     </div>
+    <br>
+    <button onclick="updateBarStackChart()">Bar Stack Chart 그리기</button>
     <div class="chart-container" style="position: relative; height:400px; width:800px; margin:auto">
-        <canvas id="chart2"></canvas>
+        <canvas id="bar-stack-chart"></canvas>
     </div>
+    <br>
+    <button onclick="updateDoughnutChart()">Doughnut Chart 그리기</button>
     <div class="chart-container" style="position: relative; height:400px; width:400px; margin:auto">
-        <canvas id="chart3"></canvas>
+        <canvas id="doughnut-chart"></canvas>
     </div>
 </body>
 <!--  -->
