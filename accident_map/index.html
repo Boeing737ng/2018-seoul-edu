@@ -2,15 +2,39 @@
 <html lang="en">
 <head>
     <!-- <meta charset="UTF-8"> -->
-    <meta charset="EUC-KR">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <!-- Automatically provides/replaces `Promise` if missing or broken. -->
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script> 
+    <!-- Minified version of `es6-promise-auto` below. -->
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script> 
 </head>
 <body>
-    <input type="file" id="input-csv" onchange="uploadFile(this.files)" accept=".csv">
-    <div id="map" style="width:500px;height:600px;"></div>
+    <input type="file" id="input-csv" accept=".csv">
+    <button onclick="setCurrentCSVData()">파일 읽기</button>
+    <br>
+    <button onclick="updateBarChart()">Bar Chart 그리기</button>
+    <div class="chart-container" style="position: relative; height:400px; width:800px; margin:auto">
+        <canvas id="bar-chart"></canvas>
+    </div>
+    <br>
+    <button onclick="updateBarStackChart()">Bar Stack Chart 그리기</button>
+    <div class="chart-container" style="position: relative; height:400px; width:800px; margin:auto">
+        <canvas id="bar-stack-chart"></canvas>
+    </div>
+    <br>
+    <button onclick="updateDoughnutChart()">Doughnut Chart 그리기</button>
+    <div class="chart-container" style="position: relative; height:400px; width:800px; margin:auto">
+        <canvas id="doughnut-chart"></canvas>
+    </div>
 </body>
 <!--  -->
-<script src="./scripts/main.js"></script>
+<!-- <script src="./scripts/main.js"></script> -->
+<script src="./scripts/main2.js"></script>
 </html>
