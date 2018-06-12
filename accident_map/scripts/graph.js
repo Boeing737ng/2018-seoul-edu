@@ -32,6 +32,13 @@ var barData = {
         title: {
             display: true,
             text: 'Chart.js Bar Chart'
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
         }
     }
 }
