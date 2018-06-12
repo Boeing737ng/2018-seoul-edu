@@ -93,6 +93,7 @@ function getReportedInjuryNumList(){
     return reportedInjuryNumList;
 }
 
+// 그래프에 사용될 숫자 데이터를 랜덤으로 n개만큼 가져온다.
 function getRandomValueList(n){
     var randomList = [];
     for(var i = 0; i<n; i++){
@@ -101,6 +102,7 @@ function getRandomValueList(n){
     return randomList;
 }
 
+// 그래프에 사용될 레이블 데이터를 랜덤으로 n개만큼 가져온다.
 function getRandomLabelList(n){
     var randomLabelList = [];
     for(var i = 0; i<n; i++){
@@ -109,6 +111,7 @@ function getRandomLabelList(n){
     return randomLabelList;
 }
 
+// 그래프에 사용될 그래프 색상 데이터를 랜덤으로 n개만큼 가져온다.
 function getRandomColorList(n){
     var randomColorList = [];
     for(var i = 0; i<n; i++){
