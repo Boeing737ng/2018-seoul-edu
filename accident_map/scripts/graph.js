@@ -54,7 +54,6 @@ var barStackData = {
     options: {
         title: {
             display: true,
-            // 그래프 타이틀
             text: 'Chart.js Bar Chart - Stacked'
         },
         tooltips: {
