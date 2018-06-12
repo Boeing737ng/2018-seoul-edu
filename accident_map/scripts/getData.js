@@ -50,29 +50,29 @@ function getOccurrenceNumList(){
 
 // 사상자수의 리스트를 가져온다
 function getCasualtyNumList(){
-    var casualtyNum = [];
+    var casualtyNumList = [];
     for(var key in curCSVData){
-        casualtyNum.push(parseInt(curCSVData[key][CASUALTY_NUM]));
+        casualtyNumList.push(parseInt(curCSVData[key][CASUALTY_NUM]));
     }
-    return casualtyNum;
+    return casualtyNumList;
 }
 
 // 사망자수의 리스트를 가져온다.
 function getDeathNumList(){
-    var deathNum = [];
+    var deathNumList = [];
     for(var key in curCSVData){
-        deathNum.push(parseInt(curCSVData[key][DEATH_NUM]));
+        deathNumList.push(parseInt(curCSVData[key][DEATH_NUM]));
     }
-    return deathNum;
+    return deathNumList;
 }
 
 // 중상자수의 리스트를 가져온다.
 function getSlanderNumList(){
-    var slanderNum = [];
+    var slanderNumList = [];
     for(var key in curCSVData){
-        slanderNum.push(parseInt(curCSVData[key][SLANDER_NUM]));
+        slanderNumList.push(parseInt(curCSVData[key][SLANDER_NUM]));
     }
-    return slanderNum;
+    return slanderNumList;
 }
 
 // 경상자수의 리스트를 가져온다.
