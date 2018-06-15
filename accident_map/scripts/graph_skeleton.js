@@ -45,11 +45,14 @@ var barData = {
 
 function updateBarChart(){
     barData.data = {
-        labels: getRandomLabelList(5),
+        // TODO :: 랜덤한 Label 데이터 리스트를 통해 레이블을 설정한다.
+        labels: ['label 1', 'label 2', 'label 3', 'label 4', 'label 5'],
         datasets: [{
             label: 'DataSet',
-            data: getRandomValueList(5),
-            backgroundColor: getRandomColorList(1)
+            // TODO :: 랜덤한 숫자 데이터 리스트를 통해 데이터를 설정한다.
+            data: [78, 92, 88, 71, 81],
+            // TODO :: 랜덤한 색상 데이터 리스트를 통해 색상을 설정한다.
+            backgroundColor: 'rgb(255, 0, 0)'
         }]
     };
     window.myBarChart.update();
@@ -81,23 +84,32 @@ var barStackData = {
 
 function updateBarStackChart(){
     barStackData.data = {
-        labels: getRandomLabelList(5),
+        // TODO :: 랜덤한 Label 데이터 리스트를 통해 레이블을 설정한다.
+        labels: ['label 1', 'label 2', 'label 3', 'label 4', 'label 5'],
         datasets: [{
             label: 'Dataset 1',
-            backgroundColor: getRandomColorList(1),
-            data: getRandomValueList(5)
+            // TODO :: 랜덤한 색상 데이터 리스트를 통해 색상을 설정한다.
+            backgroundColor: 'rgb(255, 0, 0)',
+            // TODO :: 랜덤한 숫자 데이터 리스트를 통해 데이터를 설정한다.
+            data: [17, 23, 11, 20, 15]
         }, {
             label: 'Dataset 2',
-            backgroundColor: getRandomColorList(1),
-            data: getRandomValueList(5)
+            // TODO :: 랜덤한 색상 데이터 리스트를 통해 색상을 설정한다.
+            backgroundColor: 'rgb(0, 255, 0)',
+            // TODO :: 랜덤한 숫자 데이터 리스트를 통해 데이터를 설정한다.
+            data: [15, 21, 19, 24, 29]
         }, {
             label: 'Dataset 3',
-            backgroundColor: getRandomColorList(1),
-            data: getRandomValueList(5)
+            // TODO :: 랜덤한 색상 데이터 리스트를 통해 색상을 설정한다.
+            backgroundColor: 'rgb(0, 0, 255)',
+            // TODO :: 랜덤한 숫자 데이터 리스트를 통해 데이터를 설정한다.
+            data: [11, 19, 13, 27, 9]
         }, {
             label: 'Dataset 4',
-            backgroundColor: getRandomColorList(1),
-            data: getRandomValueList(5)
+            // TODO :: 랜덤한 색상 데이터 리스트를 통해 색상을 설정한다.
+            backgroundColor: 'rgb(255, 255, 0)',
+            // TODO :: 랜덤한 숫자 데이터 리스트를 통해 데이터를 설정한다.
+            data: [9, 17, 22, 25, 16]
         }]
     };
 
@@ -125,11 +137,20 @@ var doughnutData = {
 
 function updateDoughnutChart(){
     doughnutData.data = {
-        labels: getRandomLabelList(5),
+        // TODO :: 랜덤한 Label 데이터 리스트를 통해 레이블을 설정한다.
+        labels: ['label 1', 'label 2', 'label 3', 'label 4', 'label 5'],
         datasets: [{
             label: 'DataSet 1',
-            data: getRandomValueList(5),
-            backgroundColor: getRandomColorList(5)
+            // TODO :: 랜덤한 숫자 데이터 리스트를 통해 데이터를 설정한다.
+            data: [27, 41, 16, 33, 52],
+            // TODO :: 랜덤한 색상 데이터 리스트를 통해 색상을 설정한다.
+            backgroundColor: [
+                'rgb(255, 0, 0)',
+                'rgb(0, 255, 0)',
+                'rgb(0, 0, 255)',
+                'rgb(255, 255, 0)',
+                'rgb(255, 0, 255)'
+            ]
         }]
     };
 

@@ -34,7 +34,8 @@ function setCurrentCSVData(){
 function getLocationNameList(){
     var locationNameList = [];
     for(var key in curCSVData){
-        locationNameList.push(curCSVData[key][LOCATION_NAME]);
+        // TODO :: curCSVData의 해당 key값에 따른 지역이름(LOCATION_NAME)을 locationNameList 저장한다.
+        
     }
     return locationNameList;
 }
@@ -43,7 +44,8 @@ function getLocationNameList(){
 function getOccurrenceNumList(){
     var occurrenceNumList = [];
     for(var key in curCSVData){
-        occurrenceNumList.push(parseInt(curCSVData[key][OCCURRENCE_NUM]));
+        // TODO :: curCSVData의 해당 key값에 따른 발생건수(OCCURRENCE_NUM)를 occurrenceNumList 저장한다.
+        
     }
     return occurrenceNumList;
 }
@@ -52,7 +54,8 @@ function getOccurrenceNumList(){
 function getCasualtyNumList(){
     var casualtyNumList = [];
     for(var key in curCSVData){
-        casualtyNumList.push(parseInt(curCSVData[key][CASUALTY_NUM]));
+        // TODO :: curCSVData의 해당 key값에 따른 사상자수(CASUALTY_NUM)를 casualtyNumList 저장한다.
+        
     }
     return casualtyNumList;
 }
@@ -61,7 +64,8 @@ function getCasualtyNumList(){
 function getDeathNumList(){
     var deathNumList = [];
     for(var key in curCSVData){
-        deathNumList.push(parseInt(curCSVData[key][DEATH_NUM]));
+        // TODO :: curCSVData의 해당 key값에 따른 사망자수(DEATH_NUM)를 deathNumList 저장한다.
+        
     }
     return deathNumList;
 }
@@ -70,7 +74,8 @@ function getDeathNumList(){
 function getSlanderNumList(){
     var slanderNumList = [];
     for(var key in curCSVData){
-        slanderNumList.push(parseInt(curCSVData[key][SLANDER_NUM]));
+        // TODO :: curCSVData의 해당 key값에 따른 중상자수(SLANDER_NUM)를 slanderNumList 저장한다.
+        
     }
     return slanderNumList;
 }
@@ -79,7 +84,8 @@ function getSlanderNumList(){
 function getLightInjuryNumList(){
     var lightInjuryNumList = [];
     for(var key in curCSVData){
-        lightInjuryNumList.push(parseInt(curCSVData[key][LIGHT_INJURY_NUM]));
+        // TODO :: curCSVData의 해당 key값에 따른 경상자수(LIGHT_INJURY_NUM)를 lightInjuryNumList 저장한다.
+        
     }
     return lightInjuryNumList;
 }
@@ -88,7 +94,8 @@ function getLightInjuryNumList(){
 function getReportedInjuryNumList(){
     var reportedInjuryNumList = [];
     for(var key in curCSVData){
-        reportedInjuryNumList.push(parseInt(curCSVData[key][REPORTED_INJURY_NUM]));
+        // TODO :: curCSVData의 해당 key값에 따른 부상자신고수(REPORTED_INJURY_NUM)를 reportedInjuryNumList 저장한다.
+        
     }
     return reportedInjuryNumList;
 }
