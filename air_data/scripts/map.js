@@ -37,7 +37,7 @@ function addCircle(data) {
   }
 }
 
-var map = AmCharts.makeChart( "chartdiv", {
+var map = AmCharts.makeChart( "world-map", {
   "type": "map",
   "theme": "light",
   "dataProvider": {
