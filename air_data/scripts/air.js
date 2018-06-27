@@ -16,6 +16,8 @@ var oct = 14;
 var nov = 15;
 var dec = 16;
 
+var incheon = [37.460191,126.440696];
+
 var data_2015 = []
 var data_2016 = []
 var data_2017 = []
@@ -40,5 +42,11 @@ function readFile() {
                 data_2017.push(rows[key]);
             }
         }
+        displayOnMap(data);
     }
+}
+
+function displayOnMap(data) {
+    addLine(data);
+    addCircle(data);
 }
