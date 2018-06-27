@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Resources -->
+    <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+    <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- Styles -->
+    <style>
+        #chartdiv {
+            margin:auto;
+            width: 80%;
+            height: 600px;
+        }																																												
+    </style>
+</head>
+<body>
+    <input id="file-input" type="file" accept=".csv" onchange="readFile()">
+    <div id="chartdiv"></div>
+    <script src="./scripts/air.js"></script>
+    <script src="./scripts/map.js"></script>
+    <script src="./scripts/air.js"></script>
+</body>
+</html>
