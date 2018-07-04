@@ -1,75 +1,114 @@
+var chartData = generateChartData();
 
-am4core.useTheme(am4themes_animated);
+var chart = AmCharts.makeChart("multi-line", {
+    "type": "serial",
+    "theme": "none",
+    "legend": {
+        "useGraphSettings": true
+    },
+    "dataProvider": chartData,
+    "synchronizeGrid":true,
+    "valueAxes": [{
+        "id":"v1",
+        "axisColor": "#FF6600",
+        "axisThickness": 2,
+        "axisAlpha": 1,
+        "position": "left"
+    }, {
+        "id":"v2",
+        "axisColor": "#FCD202",
+        "axisThickness": 2,
+        "axisAlpha": 1,
+        "position": "right"
+    }, {
+        "id":"v3",
+        "axisColor": "#B0DE09",
+        "axisThickness": 2,
+        "gridAlpha": 0,
+        "offset": 50,
+        "axisAlpha": 1,
+        "position": "left"
+    }],
+    "graphs": [{
+        "valueAxis": "v1",
+        "lineColor": "#FF6600",
+        "bullet": "round",
+        "bulletBorderThickness": 1,
+        "hideBulletsCount": 30,
+        "title": "red line",
+        "valueField": "visits",
+		"fillAlphas": 0
+    }, {
+        "valueAxis": "v2",
+        "lineColor": "#FCD202",
+        "bullet": "square",
+        "bulletBorderThickness": 1,
+        "hideBulletsCount": 30,
+        "title": "yellow line",
+        "valueField": "hits",
+		"fillAlphas": 0
+    }, {
+        "valueAxis": "v3",
+        "lineColor": "#B0DE09",
+        "bullet": "triangleUp",
+        "bulletBorderThickness": 1,
+        "hideBulletsCount": 30,
+        "title": "green line",
+        "valueField": "views",
+		"fillAlphas": 0
+    }],
+    "chartScrollbar": {},
+    "chartCursor": {
+        "cursorPosition": "mouse"
+    },
+    "categoryField": "date",
+    "categoryAxis": {
+        "parseDates": true,
+        "axisColor": "#DADADA",
+        "minorGridEnabled": true
+    },
+    "export": {
+    	"enabled": true,
+        "position": "bottom-right"
+     }
+});
 
-var chart = am4core.create("multi-line", am4charts.XYChart);
+chart.addListener("dataUpdated", zoomChart);
+zoomChart();
 
 
-var data = [];
-var price1 = 1000, price2 = 1200;
-var quantity = 30000;
-for (var i = 0; i < 360; i++) {
-  price1 += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 100);
-  data.push({ date1: new Date(2015, 0, i), price1: price1 });
+// generate some random data, quite different range
+function generateChartData() {
+    var chartData = [];
+    var firstDate = new Date();
+    firstDate.setDate(firstDate.getDate() - 100);
+
+        var visits = 1600;
+        var hits = 2900;
+        var views = 8700;
+
+
+    for (var i = 0; i < 100; i++) {
+        // we create date objects here. In your data, you can have date strings
+        // and then set format of your dates using chart.dataDateFormat property,
+        // however when possible, use date objects, as this will speed up chart rendering.
+        var newDate = new Date(firstDate);
+        newDate.setDate(newDate.getDate() + i);
+
+        visits += Math.round((Math.random()<0.5?1:-1)*Math.random()*10);
+        hits += Math.round((Math.random()<0.5?1:-1)*Math.random()*10);
+        views += Math.round((Math.random()<0.5?1:-1)*Math.random()*10);
+
+        chartData.push({
+            date: newDate,
+            visits: visits,
+            hits: hits,
+            views: views
+        });
+    }
+    return chartData;
 }
-for (var i = 0; i < 360; i++) {
-  price2 += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 100);
-  data.push({ date2: new Date(2017, 0, i), price2: price2 });
+
+function zoomChart(){
+    chart.zoomToIndexes(chart.dataProvider.length - 20, chart.dataProvider.length - 1);
 }
-
-chart.data = data;
-
-var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-dateAxis.renderer.grid.template.location = 0;
-dateAxis.renderer.labels.template.fill = am4core.color("#e59165");
-
-var dateAxis2 = chart.xAxes.push(new am4charts.DateAxis());
-dateAxis2.renderer.grid.template.location = 0;
-dateAxis2.renderer.labels.template.fill = am4core.color("#dfcc64");
-
-var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-valueAxis.tooltip.disabled = true;
-valueAxis.renderer.labels.template.fill = am4core.color("#e59165");
-
-valueAxis.renderer.minWidth = 60;
-
-var valueAxis2 = chart.yAxes.push(new am4charts.ValueAxis());
-valueAxis2.tooltip.disabled = true;
-valueAxis2.renderer.grid.template.strokeDasharray = "2,3";
-valueAxis2.renderer.labels.template.fill = am4core.color("#dfcc64");
-valueAxis2.renderer.minWidth = 60;
-
-var series = chart.series.push(new am4charts.LineSeries());
-series.name = "2016";
-series.dataFields.dateX = "date1";
-series.dataFields.valueY = "price1";
-series.tooltipText = "{valueY.value}";
-series.fill = am4core.color("#e59165");
-series.stroke = am4core.color("#e59165");
-//series.strokeWidth = 3;
-
-var series2 = chart.series.push(new am4charts.LineSeries());
-series2.name = "2017";
-series2.dataFields.dateX = "date2";
-series2.dataFields.valueY = "price2";
-series2.yAxis = valueAxis2;
-series2.xAxis = dateAxis2;
-series2.tooltipText = "{valueY.value}";
-series2.fill = am4core.color("#dfcc64");
-series2.stroke = am4core.color("#dfcc64");
-//series2.strokeWidth = 3;
-
-chart.cursor = new am4charts.XYCursor();
-chart.cursor.xAxis = dateAxis2;
-
-var scrollbarX = new am4charts.XYChartScrollbar();
-scrollbarX.series.push(series);
-chart.scrollbarX = scrollbarX;
-
-chart.legend = new am4charts.Legend();
-chart.legend.parent = chart.plotContainer;
-chart.legend.zIndex = 100;
-
-valueAxis2.renderer.grid.template.strokeOpacity = 0.07;
-dateAxis2.renderer.grid.template.strokeOpacity = 0.07;
-dateAxis.renderer.grid.template.strokeOpacity = 0.07;
-valueAxis.renderer.grid.template.strokeOpacity = 0.07;
